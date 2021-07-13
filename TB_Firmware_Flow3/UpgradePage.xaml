@@ -1,0 +1,76 @@
+﻿<Page
+    x:Class="XboxGC500.View.UpgradePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:XboxGC500.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+   >
+
+    <Page.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF0E1017"/>
+            <GradientStop Color="#FF202334" Offset="1"/>
+        </LinearGradientBrush>
+    </Page.Background>
+    <Viewbox x:Name="Main1" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+        <Grid x:Name="Update" Visibility="Visible" KeyUp="Update_KeyUp" Loaded="Update_Loaded" Width="1920" Height="1080">
+
+            <Grid x:Name="UPJM" Visibility="Visible">
+                <TextBlock  Text="An update is available for your controller." Visibility="Visible" x:Name="AP" Foreground="White" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,200"/>
+                <TextBlock  Text="Do you want to Apply the update?" Foreground="White" Visibility="Visible" x:Name="DY" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,70"/>
+                <Button  x:Name="UpYes" Content="Yes" Style="{StaticResource ButtonStyle17}" Height="66"  Visibility="Visible" FocusVisualPrimaryBrush="Transparent" FocusVisualSecondaryThickness="0" Width="260" FontSize="20"  XYFocusUp="{x:Bind UpYes}" XYFocusDown="{x:Bind UpYes}" XYFocusLeft="{x:Bind UpYes}"
+                     BorderBrush="White" FontFamily="Barlow" Foreground="White" HorizontalAlignment="Center" Margin="0,100,300,0" Click="UpYes_Click" GotFocus="UpYes_GotFocus" LostFocus="UpYes_LostFocus" PointerEntered="UpYes_PointerEntered" PointerExited="UpYes_PointerExited">
+                    <Button.Background>
+                        <SolidColorBrush Color="#FF2F3037" Opacity="0.8"/>
+                    </Button.Background>
+                </Button>
+                <Image x:Name="UY" Source="/Assets/Highlight.png" Height="84" Width="280" Stretch="Fill" Visibility="Collapsed" Margin="0,100,300,0"/>
+
+                <Button  x:Name="UpNo" Content="No" Style="{StaticResource ButtonStyle17}" Height="66" Visibility="Visible" FocusVisualPrimaryBrush="Transparent" FocusVisualSecondaryThickness="0" Width="260" FontSize="20"  XYFocusUp="{x:Bind UpNo}" XYFocusDown="{x:Bind UpNo}" XYFocusRight="{x:Bind UpNo}"
+                     BorderBrush="White" FontFamily="Barlow" Foreground="White" HorizontalAlignment="Center" Margin="300,100,0,0" Click="UpNo_Click" GotFocus="UpNo_GotFocus" LostFocus="UpNo_LostFocus" PointerEntered="UpNo_PointerEntered" PointerExited="UpNo_PointerExited">
+                    <Button.Background>
+                        <SolidColorBrush Color="#FF2F3037" Opacity="0.8"/>
+                    </Button.Background>
+                </Button>
+                <Image x:Name="UN" Source="/Assets/Highlight.png" Height="84" Width="280" Stretch="Fill" Visibility="Collapsed" Margin="300,100,0,0"/>
+            </Grid>
+            <Grid x:Name="UPGO" Visibility="Collapsed">
+                <TextBlock x:Name="TS"  Text="Updating Controller" Visibility="Visible" Foreground="White" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,200"/>
+                <TextBlock x:Name="PL" Text="Do not unplug controller during this process!" Foreground="White" Visibility="Visible" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,70"/>
+                <ProgressBar x:Name="progressBar1" Visibility="Visible" Value="0" Maximum="1000" Minimum="0" Margin="0,110,0,0" Height="30" Width="600"  IsIndeterminate="False"
+                             Background="White" BorderBrush="#FF1D95FF" BorderThickness="2" >
+                    <ProgressBar.Foreground>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Azure"/>
+                            <GradientStop Color="#FF1D95FF" Offset="1"/>
+                        </LinearGradientBrush>
+                    </ProgressBar.Foreground>
+                </ProgressBar>
+            </Grid>
+            <Grid x:Name="UPGood" Visibility="Collapsed" LostFocus="UPGood_LostFocus">
+                <TextBlock  Text="Firmware update Successful!" Foreground="White" Visibility="Visible"  FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,100"/>
+
+                <Button  x:Name="UpBack" Content="OK" Height="66" Style="{StaticResource ButtonStyle17}" Visibility="Visible" FocusVisualPrimaryBrush="Transparent" FocusVisualSecondaryThickness="0" Width="260" FontSize="20"  XYFocusUp="{x:Bind UpNo}" XYFocusDown="{x:Bind UpNo}" XYFocusRight="{x:Bind UpNo}"
+                     BorderBrush="White" FontFamily="Barlow" Foreground="White" HorizontalAlignment="Center" Margin="0,100,0,0" Click="UpBack_Click" GotFocus="UpBack_GotFocus" PointerEntered="UpBack_PointerEntered" PointerExited="UpBack_PointerExited">
+                </Button>
+            </Grid>
+            <Grid x:Name="UPFailed" Visibility="Collapsed" LostFocus="UPFailed_LostFocus">
+                <TextBlock  x:Name="Fail" Text="Firmware update Failed!" Foreground="White" Visibility="Visible" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,100"/>
+
+                <Button  x:Name="UpTry" Content="Update" Height="66"  Style="{StaticResource ButtonStyle17}" Visibility="Collapsed" FocusVisualPrimaryBrush="Transparent" FocusVisualSecondaryThickness="0"
+                         Width="260" FontSize="20"  XYFocusUp="{x:Bind UpTry}" XYFocusDown="{x:Bind UpTry}" XYFocusRight="{x:Bind UpBK}"
+                     BorderBrush="White" FontFamily="Barlow" Foreground="White" HorizontalAlignment="Center" Margin="0,100,350,0" 
+                         Click="UpTry_Click" GotFocus="UpTry_GotFocus" PointerEntered="UpTry_PointerEntered" PointerExited="UpTry_PointerExited" LostFocus="UpTry_LostFocus">
+                </Button>
+                <Button  x:Name="UpBK" Content="Back" Height="66"  Style="{StaticResource ButtonStyle17}" Visibility="Visible"
+                         FocusVisualPrimaryBrush="Transparent" FocusVisualSecondaryThickness="0" Width="260" FontSize="20"  XYFocusUp="{x:Bind UpBK}" XYFocusDown="{x:Bind UpBK}" XYFocusRight="{x:Bind UpBK}"
+                     BorderBrush="White" FontFamily="Barlow" Foreground="White" HorizontalAlignment="Center"
+                         Margin="0,100,0,0" Click="UpBK_Click" GotFocus="UpBK_GotFocus">
+                </Button>
+            </Grid>
+        </Grid>
+    </Viewbox>
+</Page>
